@@ -44,7 +44,6 @@ pre code a, pre code a:visited {
   font-size: 20px;
   line-height: 30px;
   font-weight: 400;
-  min-height: 50%;
 }
 
 pre code {
@@ -96,7 +95,7 @@ section {
   text-align: center;
 }
 #section_hello {
-  background-color: #1abc96;
+  background-color: #ec1d23;
   color: #fff;
 }
 #section_image_search {
