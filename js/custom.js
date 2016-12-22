@@ -1,63 +1,165 @@
-$(window).load(function () {
+// JavaScript Document
 
-    // preloader
+$(window).load(function () {
+    "use strict";
+    // makes sure the whole site is loaded
     $('#status').fadeOut(); // will first fade out the loading animation
-    $('#preloader').delay(550).fadeOut('slow'); // will fade out the white DIV that covers the website.
-    $('body').delay(550).css({
+    $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+    $('body').delay(350).css({
         'overflow': 'visible'
     });
+})
 
+$(document).ready(function () {
+    "use strict";
 
-    //  isotope
-    var $container = $('.portfolio_container');
-    $container.isotope({
-        filter: '*',
-    });
+    // scroll menu
+    var sections = $('.section'),
+        nav = $('.navbar-fixed-top,footer'),
+        nav_height = nav.outerHeight();
 
-    $('.portfolio_filter a').click(function () {
-        $('.portfolio_filter .active').removeClass('active');
-        $(this).addClass('active');
+    $(window).on('scroll', function () {
+        var cur_pos = $(this).scrollTop();
 
-        var selector = $(this).attr('data-filter');
-        $container.isotope({
-            filter: selector,
-            animationOptions: {
-                duration: 500,
-                animationEngine: "jquery"
+        sections.each(function () {
+            var top = $(this).offset().top - nav_height,
+                bottom = top + $(this).outerHeight();
+
+            if (cur_pos >= top && cur_pos <= bottom) {
+                nav.find('a').removeClass('active');
+                sections.removeClass('active');
+
+                $(this).addClass('active');
+                nav.find('a[href="#' + $(this).attr('id') + '"]').addClass('active');
             }
         });
+    });
+
+    nav.find('a').on('click', function () {
+        var $el = $(this),
+            id = $el.attr('href');
+
+        $('html, body').animate({
+            scrollTop: $(id).offset().top - nav_height + 2
+        }, 600);
+
         return false;
     });
 
-    // back to top
-    var offset = 300,
-        offset_opacity = 1200,
-        scroll_top_duration = 700,
-        $back_to_top = $('.cd-top');
 
-    //hide or show the "back to top" link
+    // Menu opacity
+    if ($(window).scrollTop() > 80) {
+        $(".navbar-fixed-top").addClass("bg-nav");
+    } else {
+        $(".navbar-fixed-top").removeClass("bg-nav");
+    }
     $(window).scroll(function () {
-        ($(this).scrollTop() > offset) ? $back_to_top.addClass('cd-is-visible'): $back_to_top.removeClass('cd-is-visible cd-fade-out');
-        if ($(this).scrollTop() > offset_opacity) {
-            $back_to_top.addClass('cd-fade-out');
+        if ($(window).scrollTop() > 80) {
+            $(".navbar-fixed-top").addClass("bg-nav");
+        } else {
+            $(".navbar-fixed-top").removeClass("bg-nav");
         }
     });
 
-    //smooth scroll to top
-    $back_to_top.on('click', function (event) {
-        event.preventDefault();
-        $('body,html').animate({
-            scrollTop: 0,
-        }, scroll_top_duration);
+
+
+    // Parallax
+    var parallax = function () {
+        $(window).stellar();
+    };
+
+    $(function () {
+        parallax();
     });
 
-    // input
-    $(".input-contact input, .textarea-contact textarea").focus(function () {
-        $(this).next("span").addClass("active");
+    // AOS
+    AOS.init({
+        duration: 1200,
+        once: true,
+        disable: 'mobile'
     });
-    $(".input-contact input, .textarea-contact textarea").blur(function () {
-        if ($(this).val() === "") {
-            $(this).next("span").removeClass("active");
-        }
+
+    //  isotope
+    $('#projects').waitForImages(function () {
+        var $container = $('.portfolio_container');
+        $container.isotope({
+            filter: '*',
+        });
+
+        $('.portfolio_filter a').click(function () {
+            $('.portfolio_filter .active').removeClass('active');
+            $(this).addClass('active');
+
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                filter: selector,
+                animationOptions: {
+                    duration: 500,
+                    animationEngine: "jquery"
+                }
+            });
+            return false;
+        });
+
+    });
+
+    //animatedModal
+    $("#demo01,#demo02,#demo03,#demo04,#demo05,#demo06,#demo07,#demo08,#demo09").animatedModal();
+
+    // Contact Form 	
+
+    // validate contact form
+    $(function () {
+        $('#contact-form').validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+                email: {
+                    required: true
+                },
+                phone: {
+                    required: false
+                },
+                message: {
+                    required: true
+                }
+
+            },
+            messages: {
+                name: {
+                    required: "This field is required",
+                    minlength: "your name must consist of at least 2 characters"
+                },
+                email: {
+                    required: "This field is required"
+                },
+                message: {
+                    required: "This field is required"
+                }
+            },
+            submitHandler: function (form) {
+                $(form).ajaxSubmit({
+                    type: "POST",
+                    data: $(form).serialize(),
+                    url: "process.php",
+                    success: function () {
+                        $('#contact :input').attr('disabled', 'disabled');
+                        $('#contact').fadeTo("slow", 1, function () {
+                            $(this).find(':input').attr('disabled', 'disabled');
+                            $(this).find('label').css('cursor', 'default');
+                            $('#success').fadeIn();
+                        });
+                    },
+                    error: function () {
+                        $('#contact').fadeTo("slow", 1, function () {
+                            $('#error').fadeIn();
+                        });
+                    }
+                });
+            }
+        });
+
     });
 });

@@ -5,295 +5,604 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Box personal portfolio Template</title>
-    <link rel="icon" href="img/fav.png" type="image/x-icon">
-
+    <title>Resume</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link href="ionicons/css/ionicons.min.css" rel="stylesheet">
-
-    <!-- main css -->
-    <link href="css/style.css" rel="stylesheet">
-
-
-    <!-- modernizr -->
-    <script src="js/modernizr.js"></script>
-
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/aos.css" rel="stylesheet">
+    <!-- main style -->
+    <link href="css/style5.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link rel="stylesheet" href="css/style3.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>
-
+  <canvas></canvas>
     <!-- Preloader -->
     <div id="preloader">
-        <div class="pre-container">
-            <div class="spinner">
-                <div class="double-bounce1"></div>
-                <div class="double-bounce2"></div>
+        <div id="status">
+
+            <div class="preloader" aria-busy="true" aria-label="Loading, please wait." role="progressbar">
             </div>
+
         </div>
     </div>
-    <!-- end Preloader -->
+    <!-- ./Preloader -->
 
-    <div class="container-fluid">
-        <!-- box header -->
-        <header class="box-header">
-            <div class="box-logo">
-                <!-- <a href="index.html"><img src="img/logo.png" width="80" alt="Logo"></a> -->
-            </div>
-            <!-- box-nav -->
-            <a class="box-primary-nav-trigger" href="#0">
-                <span class="box-menu-text">Menu</span><span class="box-menu-icon"></span>
-            </a>
-            <!-- box-primary-nav-trigger -->
-        </header>
-        <!-- end box header -->
-
-        <!-- nav -->
+    <!-- header -->
+    <header class="navbar-fixed-top">
         <nav>
-            <ul class="box-primary-nav">
-                <li class="box-label">About me</li>
-
-                <li><a href="index.html">Intro</a> <i class="ion-ios-circle-filled color"></i></li>
-                <li><a href="about.html">About me</a></li>
-                <li><a href="services.html">services</a></li>
-                <li><a href="portfolio.html">portfolio</a></li>
-                <li><a href="contact.html">contact me</a></li>
-
-
-
-                <li class="box-label">Follow me</li>
-
-                <li class="box-social"><a href="#0"><i class="ion-social-facebook"></i></a></li>
-                <li class="box-social"><a href="#0"><i class="ion-social-instagram-outline"></i></a></li>
-                <li class="box-social"><a href="#0"><i class="ion-social-twitter"></i></a></li>
-                <li class="box-social"><a href="#0"><i class="ion-social-dribbble"></i></a></li>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#projects">Overview</a></li>
+                <li><a href="#contact">contact</a></li>
+                <!-- <div class ="dropdown">
+                <a href="#pj" data-toggle="dropdown" class="dropdown-toggle"><li>Dropdown</li></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#pj"><img src="img/portfolio/chopPrevOpt.jpg" width="230"></a></li>
+                    <li><a href="#pj">Another action</a></li>
+                </ul>
+              </div> -->
             </ul>
         </nav>
-        <!-- end nav -->
+    </header>
+    <!-- ./header -->
 
-        <!-- box-intro -->
-        <section class="box-intro">
-            <div class="table-cell">
-                <h1 class="box-headline letters rotate-2">
-                    <span class="box-words-wrapper">
-                        <b class="is-visible">Shelley X. Wang</b>
-                        <!-- <b>&nbsp;coding.</b>
-                        <b>graphic.</b> -->
-                    </span>
-		            </h1>
-                <h5>Art + Code + Design</h5>
+    <!-- home -->
+    <div class="section" id="home" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="disply-table">
+                <div class="table-cell" data-aos="fade-up" data-aos-delay="0">
+                    <h4>Shelley X Wang</h4>
+                    <h1>Art Stuff &<br />Code Stuff</h1> </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./home -->
+
+    <!-- about -->
+    <div class="section" id="about">
+        <div class="container">
+            <div class="col-md-6" data-aos="fade-up">
+                <h4>01</h4>
+                <h1 class="size-50">About <br /> My Face</h1>
+                <div class="h-50"></div>
+                <p>I'm just a puppy who codes and tries to do art things.</p>
+                <p>Currently completing a CS Degree. Makes art things; intrigued by subject of racial/economic inequality. Enthusiastically create seamless synergy rather than excellent value.</p>
+                <p><a href="#contact">Let's work or eat together or something</a></p>
+                <!-- <div class="h-50"></div> <img src="img/Signature.svg" width="230" alt="" /> -->
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-6 about-img-div">
+                <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div>
+                <img src="img/about_me.jpg" width="400" class="img-responsive" alt="" align="right" data-aos="fade-right" data-aos-delay="0" />
+            </div>
+        </div>
+    </div>
+    <!-- ./about -->
+    <!-- Alt 1 Chopsticks -->
+
+    <!-- ./about -->
+    <!-- Project 1 Chopsticks -->
+    <div class="section" id="work">
+          <div class="container">
+            <div class="col-md-12" data-aos="fade-up">
+                <h4>02</h4>
+                <h1 class="size-50">Work</h1>
+                <div class="h-50"></div>
             </div>
 
-            <div class="mouse">
-                <div class="scroll"></div>
+            <div class="col-md-12 about-img-div" data-aos="fade-up">
+                <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
+                <a href="chopsticks.html" class="portfolio_item"> <img src="img/portfolio/full.jpg" alt="image" class="img-responsive" />
+                    <div class="portfolio_item_hover">
+                        <div class="portfolio-border clearfix">
+                            <div class="item_info"> <span>Chopsticks</span> <em>+</em> </div>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </section>
-        <!-- end box-intro -->
+
+        </div>
     </div>
 
-    <!-- portfolio div -->
-    <div class="portfolio-div">
-        <div class="portfolio">
-            <div class="no-padding portfolio_container">
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6  fashion logo">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="img/hp_portversion.jpg" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Hot Pot Ad</span>
-                                    <em>Graphic Design</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
+    <!-- Project 2 3D -->
+    <div class="section" id="work">
+          <div class="container">
 
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6 ads graphics">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Floating mockups</span>
-                                    <em>Ads / Graphics</em>
-                                </div>
-                            </div>
+            <div class="col-md-12 about-img-div" data-aos="fade-up">
+                <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
+                <a href="emotiSphere.html" class="portfolio_item"> <img src="img/portfolio/wowpink.jpg" alt="image" class="img-responsive" />
+                    <div class="portfolio_item_hover">
+                        <div class="portfolio-border clearfix">
+                            <div class="item_info"> <span>EmotiSphere</span> <em>+</em> </div>
                         </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-6 col-sm-12 photography">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="img/full.jpg" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Chopsticks</span>
-                                    <em>Installation</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6 fashion ads">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Held by hands</span>
-                                    <em>Fashion / Ads</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6 graphics ads">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Mobile devices</span>
-                                    <em>Graphics / Ads</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-6 col-sm-12 photography">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Photorealistic smartwatch</span>
-                                    <em>Photography</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6 graphics ads">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Mobile devices</span>
-                                    <em>Graphics / Ads</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6 graphics ads">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Mobile devices</span>
-                                    <em>Graphics / Ads</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6 graphics ads">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Mobile devices</span>
-                                    <em>Graphics / Ads</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
-
-                <!-- single work -->
-                <div class="col-md-3 col-sm-6 graphics ads">
-                    <a href="single-project.html" class="portfolio_item">
-                        <img src="http://placehold.it/1000x1000" alt="image" class="img-responsive" />
-                        <div class="portfolio_item_hover">
-                            <div class="portfolio-border clearfix">
-                                <div class="item_info">
-                                    <span>Mobile devices</span>
-                                    <em>Graphics / Ads</em>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <!-- end single work -->
+                    </div>
+                </a>
             </div>
-            <!-- end portfolio_container -->
         </div>
-        <!-- portfolio -->
     </div>
-    <!-- end portfolio div -->
 
-    <!-- footer -->
-    <footer>
-        <div class="container-fluid">
-            <p class="copyright">© Shelley Wang 2016</p>
+    <!-- Project 2 3D -->
+    <div class="section" id="work">
+          <div class="container">
+
+            <div class="col-md-12 about-img-div" data-aos="fade-up">
+                <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
+                <a href="shroomBear.html" class="portfolio_item"> <img src="img/portfolio/da_dscene.jpg" alt="image" class="img-responsive" />
+                    <div class="portfolio_item_hover">
+                        <div class="portfolio-border clearfix">
+                            <div class="item_info"> <span>Shroombear</span> <em>+</em> </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
-    </footer>
-    <!-- end footer -->
-
-    <!-- back to top -->
-    <a href="#0" class="cd-top"><i class="ion-android-arrow-up"></i></a>
-    <!-- end back to top -->
+    </div>
 
 
 
+    <!-- Project 5 G Design -->
+    <div class="section" id="work">
+          <div class="container">
+
+            <div class="col-md-offset-2 col-md-8 about-img-div" data-aos="fade-up">
+                <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
+                <a href="design.html" class="portfolio_item"> <img src="img/portfolio/hp_full.jpg" alt="image" class="img-responsive" />
+                    <div class="portfolio_item_hover">
+                        <div class="portfolio-border clearfix">
+                            <div class="item_info"> <span>Design</span> <em>+</em> </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 2 3D -->
+    <div class="section" id="work">
+          <div class="container">
+
+            <div class="col-md-12 about-img-div" data-aos="fade-up">
+                <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
+                <a href="drawings.html" class="portfolio_item"> <img src="img/portfolio/draw1.jpg" alt="image" class="img-responsive" />
+                    <div class="portfolio_item_hover">
+                        <div class="portfolio-border clearfix">
+                            <div class="item_info"> <span>Drawings</span> <em>+</em> </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ./about -->
+
+    <!-- <p class= "timeline-event-thumbnail" id = "test">press me</p>
+    <div class = "section">
+      <div class ="meh">
+        <div class="container">
+            <div class="col-md-6" data-aos="fade-up">
+                <h4>01</h4>
+                <h1 class="size-50">Project 1</h1>
+                <div class="h-50"></div>
+                <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value. Quickly promote premium strategic theme areas vis-a-vis.</p>
+                <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value.</p>
+                <div class="h-50"></div> <img src="img/Signature.svg" width="230" alt="" />
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-6 about-img-div">
+                <div class="p1-border" data-aos="fade-up" data-aos-delay=".5"></div>
+                <img src="img/about-img.jpg" width="400" class="img-responsive" alt="" align="right" data-aos="fade-right" data-aos-delay="0" />
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- about -->
+    <!-- <button data-toggle="collapse" data-target="#p1">Collapsible</button>
+
+    <!-- <div id="demo" class="collapse">
+    Lorem ipsum dolor text....
+    </div>     -->
+    <!-- <div class="section collapse" id="p1">
+        <div class="container">
+            <div class="col-md-6" data-aos="fade-up">
+                <h4>01</h4>
+                <h1 class="size-50">Project 1</h1>
+                <div class="h-50"></div>
+                <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value. Quickly promote premium strategic theme areas vis-a-vis.</p>
+                <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value.</p>
+                <div class="h-50"></div> <img src="img/Signature.svg" width="230" alt="" />
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-6 about-img-div">
+                <div class="p1-border" data-aos="fade-up" data-aos-delay=".5"></div>
+                <img src="img/about-img.jpg" width="400" class="img-responsive" alt="" align="right" data-aos="fade-right" data-aos-delay="0" />
+            </div>
+        </div>
+    </div>  -->
+    <!-- ./about -->
+
+    <!-- experience  -->
+    <!-- <div class="section" id="experience">
+        <div class="container">
+            <div class="col-md-12">
+                <h4>02</h4>
+                <h1 class="size-50">My <br /> Experience</h1>
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-12">
+                <ul class="timeline">
+                    <li class="timeline-event" data-aos="fade-up" id="testPat">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">April 2016 - Present</p>
+                            <h3>Geil,Danke! GmbH</h3>
+                            <h4>eines Web-Studios</h4>
+                            <p><strong>Projektmanagement mit Scrum</strong>
+                                <br>Ständiges Verbessern des agilen Entwicklungsprozesses beispielsweise durch Grunt, Yeoman, GIT, JIRA und BrowserStack.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-event" data-aos="fade-up" data-aos-delay=".2">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">November 2014 - Mars 2016</p>
+                            <h3>Freelancer</h3>
+                            <h4>Designer und Autor</h4>
+                            <p>Konzeption, Design und Produktion von Digitalen Magazinen mit InDesign, der Adobe Digital Publishing Suite und HTML5. Co-Autorin der Fachbücher "Digitales Publizieren für Tablets" und "Adobe Digital Publishing Suite" erschienen im dpunkt.verlag.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-event" data-aos="fade-up" data-aos-delay=".4">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">April 2014</p>
+                            <h3>konplan gmbh</h3>
+                            <h4>IT-Consultant</h4>
+                            <p><strong>Systemarchitektur, Consulting</strong>
+                                <br>Konzeption und Modellierung von Systemen und APIs für Digital Publishing und Entitlement nach SOA</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+    <!-- ./experience -->
+
+    <!-- projects -->
+    <div class="section" id="projects">
+        <div class="container">
+            <div class="col-md-12" data-aos="fade-up">
+                <h4>03</h4>
+                <h1 class="size-50">Project<br /> Overview</h1>
+            </div>
+            <!-- main container -->
+            <div class="main-container portfolio-inner clearfix">
+                <!-- portfolio div -->
+                <div class="portfolio-div">
+                    <div class="portfolio">
+                        <!-- portfolio_filter -->
+                        <div class="categories-grid wow fadeInLeft">
+                            <nav class="categories" data-aos="fade-up">
+                                <ul class="portfolio_filter">
+                                    <li><a href="" class="active" data-filter="*">All</a></li>
+                                    <li><a href="" data-filter=".photography">3D</a></li>
+                                    <li><a href="" data-filter=".logo">Installation</a></li>
+                                    <li><a href="" data-filter=".graphics">Graphics</a></li>
+                                    <li><a href="" data-filter=".ads">Drawings</a></li>
+                                    <li><a href="" data-filter=".fashion">Tech</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- portfolio_filter -->
+
+                        <!-- portfolio_container -->
+                        <div class="no-padding portfolio_container clearfix" data-aos="fade-up">
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6  fashion logo">
+                                <a id="demo01" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/chopPrevOpt.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mockups in seconds</span> <em>Fashion / Logo</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 ads graphics">
+                                <a id="demo02" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/wowpink.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Floating mockups</span> <em>Ads / Graphics</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 photography">
+                                <a id="demo03" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/da_dscene.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Photorealistic smartwatch</span> <em>Photography</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <!-- <div class="col-md-4 col-sm-6 fashion ads">
+                                <a id="demo04" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/draw1.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Held by hands</span> <em>Fashion / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div> -->
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 graphics ads">
+                                <a href="demo05" class="portfolio_item"> <img src="img/portfolio/draw1.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 photography">
+                                <a id="demo06" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/hp_full.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Photorealistic smartwatch</span> <em>Photography</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 graphics ads">
+                                <a id="demo07" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/06.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 graphics ads">
+                                <a id="demo08" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/07.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+
+                            <!-- single work -->
+                            <div class="col-md-4 col-sm-6 graphics ads">
+                                <a id="demo09" href="#animatedModal" class="portfolio_item"> <img src="img/portfolio/08.jpg" alt="image" class="img-responsive" />
+                                    <div class="portfolio_item_hover">
+                                        <div class="portfolio-border clearfix">
+                                            <div class="item_info"> <span>Mobile devices</span> <em>Graphics / Ads</em> </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- end single work -->
+                        </div>
+                        <!-- end portfolio_container -->
+                    </div>
+                    <!-- portfolio -->
+                </div>
+                <!-- end portfolio div -->
+            </div>
+            <!-- end main container -->
+        </div>
+    </div></div>
+    <!-- ./projects -->
+
+    <!-- contact -->
+    <div class="section" id="contact">
+        <div class="container">
+            <div class="col-md-12" data-aos="fade-up">
+                <h4>04</h4>
+                <h1 class="size-50">Contact  Me</h1>
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up">
+
+                <!-- <h3>Phone Number</h3>
+                <p>+20 5555 569 42</p>
+                <h3> Mobile Numberr</h3>
+                <p>+20 5555 569 42</p> -->
+                <h3>Email</h3>
+                <p>mail@info.me </p>
+
+                <!-- <h3>Social Network</h3>
+
+                <ul class="social">
+                    <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                    <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                    <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                    <li><a href="#"><i class="ion-social-dribbble"></i></a></li>
+                </ul> -->
+                <div class="clearfix"></div>
+                <div class="h-50"></div>
+            </div>
+            <div class="col-md-8" data-aos="fade-up">
+                <form class="contact-bg" id="contact-form" name="contact" method="post" novalidate="novalidate">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" />
+                    <input type="email" name="email" class="form-control" placeholder="Your E-mail" />
+                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" />
+                    <textarea name="message" class="form-control" placeholder="Your Message" style="height:120px"></textarea>
+                    <button id="submit" type="submit" name="submit" class="btn btn-glance">Send</button>
+                    <div id="success">
+                        <p class="green textcenter"> Your message was sent successfully! I will be in touch as soon as I can. </p>
+                    </div>
+                    <div id="error">
+                        <p> Something went wrong, try refreshing and submitting the form again. </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ./contact -->
+
+    <!--DEMO01-->
+    <div id="animatedModal" class="popup-modal">
+        <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID -->
+        <div id="btn-close-modal" class="close-animatedModal close-popup-modal"> <i class="ion-close-round"></i> </div>
+        <div class="clearfix"></div>
+        <div class="modal-content">
+            <div class="container">
+                <div class="portfolio-padding">
+                    <div class="col-md-8 col-md-offset-2" >
+                        <h2>Geschäfts Eines<br /> Web-Studios</h2>
+                        <div class="h-50"></div>
+                        <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value. Quickly promote premium strategic theme areas vis-a-vis.</p>
+                        <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value.</p>
+                        <br />
+                        <br /> <img src="img/portfolio/02.jpg" alt="" class="img-responsive" />
+                        <br />
+                        <br />
+                        <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value. Quickly promote premium strategic theme areas vis-a-vis.</p>
+                        <p>Appropriately maintain standards compliant total linkage with cutting-edge action items. Enthusiastically create seamless synergy rather than excellent value.</p>
+                        <br />
+                        <br /> </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- jQuery -->
-    <script src="js/jquery-2.1.1.js"></script>
-    <!--  plugins -->
+    <script src="js/jquery.js"></script>
+
+    <!--  plugins  -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/menu.js"></script>
-    <script src="js/animated-headline.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
 
-
-    <!--  custom script -->
+    <!--  main script  -->
     <script src="js/custom.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/stats.js/r11/Stats.js'></script>
 
+    <script>
+      var camera, scene, renderer,
+          geometry, material, mesh;
+
+      init();
+      animate();
+
+      function init() {
+         clock = new THREE.Clock();
+
+          renderer = new THREE.WebGLRenderer();
+          renderer.setSize( window.innerWidth, window.innerHeight );
+          var screenWidth = window.innerWidth;
+          var screenHeight = window.innerHeight;
+          var aspectRatio = screenWidth / screenHeight;
+
+          scene = new THREE.Scene();
+
+          camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+          camera.position.z = 1000;
+          scene.add( camera );
+
+          geometry = new THREE.CubeGeometry( 200, 200, 200 );
+          material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false } );
+          mesh = new THREE.Mesh( geometry, material );
+          cubeSineDriver = 0;
+
+          THREE.ImageUtils.crossOrigin = ''; //Need this to pull in crossdomain images from AWS
+
+          light = new THREE.DirectionalLight(0xffffff,0.5);
+          light.position.set(-1,0,1);
+          scene.add(light);
+
+          smokeTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png');
+          smokeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: smokeTexture, transparent: true});
+          smokeGeo = new THREE.PlaneGeometry(300,300);
+          smokeParticles = [];
+
+          for (p = 0; p < 150; p++) {
+              var particle = new THREE.Mesh(smokeGeo,smokeMaterial);
+              particle.position.set(Math.random()*500-250,Math.random()*500-250,Math.random()*1000-100);
+              particle.rotation.z = Math.random() * 360;
+              scene.add(particle);
+              smokeParticles.push(particle);
+          }
+          document.body.appendChild( renderer.domElement );
+      }
+
+      function animate() {
+          delta = clock.getDelta();
+          requestAnimationFrame( animate );
+          evolveSmoke();
+          render();
+      }
+
+      function evolveSmoke() {
+          var sp = smokeParticles.length;
+          while(sp--) {
+              smokeParticles[sp].rotation.z += (delta * 0.12);
+          }
+      }
+
+      function onWindowResize() {
+        camera.aspect = aspectRatio;
+        camera.updateProjectionMatrix();
+        renderer.setSize( screenWidth, screenHeight );
+
+      }
+
+      function render() {
+          mesh.rotation.x += 0.005;
+          mesh.rotation.y += 0.01;
+          cubeSineDriver += .01;
+          mesh.position.z = 100 + (Math.sin(cubeSineDriver) * 500);
+          renderer.render( scene, camera );
+      }
+      </script>
+    <script>
+    $('#test').bind('click', function(e) {
+        e.preventDefault();
+
+        $('div.meh').toggleClass('animated');
+
+    });
+    $('#animatedModal').removeClass('modal-open');
+    </script>
 </body>
 
 </html>
