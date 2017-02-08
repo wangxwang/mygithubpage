@@ -1,0 +1,464 @@
+<!--
+CS307 Scott Anderson
+Shelley Wang
+demo.html
+
+This is a scene that allows the user to interact with and manipulate some aspects
+of the scene to get a bit more insight into what the shaders are doing/how the scene
+is working, and astarting point for combining existing THREE.js geometries/shaders
+with custom ones.
+
+There is a ball that "approaches" the user in the z-axis. The user can control its
+movement by moving the mouse around, as well as the speed of the ball moving through
+the z-axis via the GUI. If the depthTest is on, the user will see the ball
+going through the clouds layer by layer in a realistic manner. If turned off, the user
+will see the ball never pass through the clouds until it reaches the z-value of the
+camera and then disappears.
+
+The user can also change the background fragment shader's movement, the fog color,
+and cloud movements. In addition, two "lights" in the scene, one on the background
+and one on the clouds, may be switched on and off; they will follow the mouse movements
+of the user as well.
+
+-->
+
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Clouds</title>
+		<meta charset="utf-8">
+		<style type="text/css">
+
+			body {
+				background-color: #FFFFFF;
+				margin: 0px;
+				overflow: hidden;
+				font-family:Monospace;
+				font-size:12px;
+				text-align:center;
+				text-align:center;
+			}
+
+		</style>
+	</head>
+	<body>
+    <div id="info"> Keyboard Controls: 'g' to start/stop ball // '0' to restart the ball
+      <br> 'c' to reset the clouds // <a href="project.html" target="_blank">Info Page</a>
+    </div>
+
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/three.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui.min.js"></script>
+    <script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-fa16.js"></script>
+
+    <script id="bg_vertexShader" type="x-shader/x-vertex">
+      varying vec2 vUv;
+      void main()
+      {
+        vUv = uv;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    </script>
+
+    <!-- Define background fragment and vertex shader; code mostly from the Three.js demo
+    with modifications for the movement pattern as well as an added "light" circle, as
+    well as modified to change from black and white to colored over time -->
+    <script id="bg_fragShader" type="shader-code">
+      uniform vec3 light;
+      uniform float time;
+      uniform vec2 resolution;
+      uniform int whichBG;
+      uniform sampler2D texture;
+      varying vec2 vUv;
+
+      void main( void ) {
+        vec2 position = -1.0 + 2.0 * vUv;
+        float a = atan( position.y, position.x );
+        float r = sqrt( dot( position, position ) );
+        vec2 uv;
+
+        /*2 background options, default is BG 0, changed based on uniform value passed in
+        from the threejs script*/
+        if (whichBG == 0){
+          uv.y = cos( r ) / r;
+          uv.x = sin( a ) / r;
+        }else if (whichBG == 1){
+          uv.y = cos( r ) / r;
+          uv.x = sin( r ) / r;
+        }
+        uv /= 10.0;
+        uv += time * 0.05;
+        vec3 color = texture2D( texture, uv ).rgb;
+
+        // Get the grey value for each pixel
+        float average = (color.r + color.b + color.g) / 3.0;
+
+        /* Changes background color from full color to black and white using the
+        average calculated above */
+        float red = ((color.r - average) * abs(sin(time))) + average;
+        float green = ((color.g - average) * abs(sin(time))) + average;
+        float blue = ((color.b - average) * abs(sin(time))) + average;
+
+        /* Distance formula to calculate the distance from the given light coordinates to current
+        fragment coordinate to use as the radius for the "light circle"*/
+        float dist = distance(gl_FragCoord.xy,light.xy);
+
+        gl_FragColor = vec4(red,green,blue, 1.0);
+        // Calculate what is in the moving light circle
+        if(light.z * resolution.x > dist){
+          // Texture gets lighter (whiter) towards the center
+          gl_FragColor.rgb = gl_FragColor.rgb  + 1.0 - dist/(light.z*resolution.x);
+        }
+      }
+
+    </script>
+
+		<script id="cloud_vs" type="x-shader/x-vertex">
+
+			varying vec2 vUv;
+
+			void main() {
+
+				vUv = uv;
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+			}
+
+		</script>
+
+		<script id="cloud_fs" type="x-shader/x-fragment">
+			uniform sampler2D map;
+			uniform vec3 fogColor;
+			uniform float fogNear;
+			uniform float fogFar;
+			varying vec2 vUv;
+      uniform vec3 light;
+      uniform vec2 resolution;
+
+			void main() {
+				float depth = gl_FragCoord.z / gl_FragCoord.w;
+				float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+				gl_FragColor = texture2D( map, vUv );
+				gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+
+        // Mix clouds further in the back with a higher intensity of the fog color
+				gl_FragColor = mix( gl_FragColor, vec4( fogColor, 0.1*gl_FragColor.w ), fogFactor );
+
+        // Light circle calculated same way as in background shader
+        float dist = distance(gl_FragCoord.xy,light.xy);
+
+        if(light.z * resolution.x > dist){
+          // Texture gets lighter (whiter) towards the center
+          gl_FragColor.rgb = gl_FragColor.rgb + 1.0 - dist/(light.z*resolution.x);
+        }
+			}
+
+		</script>
+
+		<script type="text/javascript">
+    			var container;
+    			var camera, scene, renderer;
+    			var cloudMesh, cloudGeom, cloudMat, fog;
+
+    			var mouseX = 0, mouseY = 0;
+          var screenWidth = window.innerWidth;
+    			var screenHeight = window.innerHeight;
+
+          var ball;
+          var cloudUniforms, bgUniforms;
+
+          var ballMoving = true;
+
+          var loader = new THREE.TextureLoader();
+
+          // Setup canvas that will span entire page
+          container = document.createElement( 'div' );
+          document.body.appendChild( container );
+
+          var canvas = document.createElement( 'canvas' );
+          canvas.width = 32;
+          canvas.height = window.innerHeight;
+
+          var context = canvas.getContext( '2d' );
+
+          var params = { initBallZ: 3500,
+                         initBallY: -60,
+                         lightInit: 0.0
+                        }
+
+          // Initialize dat.GUI parameters and its controls
+          var gui = new dat.GUI();
+          var guiParams = { fogColor: '#FF5733',
+                            depthTest: true,
+                            backGround: 0,
+                            moveCloudX: true,
+                            moveCloudY: false,
+                            backLightOn: true,
+                            cloudLightOn: false,
+                            ballSpeed: 0.5 // controls how fast ball flies at you
+                          };
+
+          gui.addColor(guiParams,'fogColor').onChange(redoScene);
+          gui.add(guiParams, 'backGround', [ '0', '1']).onChange(redoScene);
+          gui.add(guiParams, 'ballSpeed',0.0,5.0).step(0.1);
+          gui.add(guiParams,'moveCloudX').onChange(animate);
+          gui.add(guiParams,'moveCloudY').onChange(animate);
+          gui.add(guiParams,'depthTest').onChange(redoScene);
+          gui.add(guiParams,'backLightOn').onChange(animate);
+          gui.add(guiParams,'cloudLightOn').onChange(animate);
+
+
+          // Initializes components of the scene (geometries, textures, lighting, etc.)
+    			init();
+
+    			function init() {
+            // Create and set camera and scene
+    				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight,
+              1, 4000 );
+    				camera.position.z = 6000;
+            camera.position.y = 10;
+    				scene = new THREE.Scene();
+
+            /* Load cloud texture image; animate() will allow for the texture to eventually
+            finish loading and then render correctly*/
+    				var cloud_texture = loader.load( 'mrdoobcloud2.png',animate );
+
+            /*Using mipmapping and trilinear filtering, so that more distant things in
+            the texture are smoothly repeated at a gradually smaller size */
+            cloud_texture.magFilter = THREE.LinearMipMapLinearFilter;
+      			cloud_texture.minFilter = THREE.LinearMipMapLinearFilter;
+
+            /* Create a colored fog that the back of the clouds will fade into*/
+    				fog = new THREE.Fog( guiParams.fogColor, - 100, 3000 );
+
+            /* Uniforms for the cloud material that include details about the fog
+            as well as a passed in "light" as well as screen dimensions (to later
+            calculate user's mouse interactions)*/
+            cloudUniforms = {
+              map: {value: cloud_texture },
+              fogColor : {value: fog.color },
+              fogNear : {value: fog.near },
+              fogFar : {value: fog.far },
+              light: 			{value:new THREE.Vector3()},
+              resolution: { value: new THREE.Vector2(screenWidth,screenHeight) },
+            }
+
+            /* This is the "radius" of a cloud light, or 1/10 of the screen width.
+            light.value.x and light.value.y can then later be defined as the light's
+            screen position */
+            cloudUniforms.light.value.z = 0.05;
+
+            /* Create shader material for clouds*/
+    				cloudMat = new THREE.ShaderMaterial( {
+              uniforms: cloudUniforms,
+    					vertexShader: document.getElementById( 'cloud_vs' ).textContent,
+    					fragmentShader: document.getElementById( 'cloud_fs' ).textContent,
+              /* Clouds will be created from far to near so depthWrite is not needed,
+              but depthTest must be turned on in order to properly calculate the depth
+              of each cloud in the cloud field */
+    					depthWrite: false,
+    					depthTest: guiParams.depthTest,
+    					transparent: true
+    				} );
+
+            // Initialize a cloud geometry container
+            cloudGeom= new THREE.Geometry();
+
+            /* Create a plane and transform and then add it to the overall geometry
+            about 10k times, adjusting for depth, position, and scale, to give a somewhat
+            realistic cloud formation*/
+    				var plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 64 ) );
+
+    				for ( var i = 0; i < 10000; i++ ) {
+
+    					plane.position.x = Math.random() * 1000 - 500;
+    					plane.position.y = - Math.random() * Math.random() * 200 - 15;
+    					plane.position.z = i;
+    					plane.rotation.z = Math.random() * Math.PI;
+    					plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
+
+              // update the plane matrix after all of the prior transformations
+              plane.updateMatrix();
+
+              /* merge the individual plane with the overall geometry
+              (add another cloud plane to the geometry) */
+              cloudGeom.merge(plane.geometry, plane.matrix);
+
+    				}
+
+            // Create the cloud mesh and add it to the scene
+    				cloudMesh = new THREE.Mesh( cloudGeom, cloudMat);
+    				scene.add( cloudMesh);
+
+            /* Create directional and ambient light to light the ball; currently not
+            linked to any custom shaders and therefore does not light the clouds or bg */
+            var dirlight = new THREE.DirectionalLight(0xF2F2F2, 1);
+            dirlight.position.set( 0.5, 0.5, 1 );
+            scene.add(dirlight);
+
+            var ambLight = new THREE.AmbientLight(0x808080);
+            scene.add(ambLight);
+
+            /* ----- Background creation */
+
+            // Load background texture image; same case as loading cloud image above
+            var bgTexture = loader.load('galaxy.jpg', animate);
+
+            // Define background shader uniforms
+            bgUniforms = {
+              light: 			{ value:new THREE.Vector3() },
+              time:       { value: 0.01 },
+              resolution: { value: new THREE.Vector2(screenWidth,screenHeight) },
+              texture:    { value: bgTexture },
+              /* Uniform so that we/the user can change the overall background when
+              passed into the fragment shader from the user's selection in the GUI*/
+              whichBG:    { value: guiParams.backGround }
+            };
+
+            // "Light" for the background
+            bgUniforms.light.value.z = params.lightInit;
+
+            var bgMaterial = new THREE.ShaderMaterial({
+              uniforms: bgUniforms,
+              fragmentShader: document.getElementById("bg_fragShader").innerHTML,
+              vertexShader: document.getElementById('bg_vertexShader').textContent,
+            });
+
+            // Create large plane for the background
+            var bgGeom = new THREE.PlaneGeometry(5000, 5000);
+            var bgMesh = new THREE.Mesh(bgGeom, bgMaterial);
+            bgMesh.position.z = 2000;
+            scene.add(bgMesh);
+
+            /* Create green ball. The material is double sided because it will fly
+            towards the user (camera) and pass it by. We want to be able to see the
+            ball for as long as possible, so we get a brief view inside the ball too.*/
+            var ballMat = new THREE.MeshPhongMaterial({ color: 0x9FC55B, side: THREE.DoubleSide });
+            var ballGeom = new THREE.SphereGeometry(25, 20, 20);
+            ball = new THREE.Mesh(ballGeom, ballMat);
+            ball.position.z = params.initBallZ;
+            ball.position.y = params.initBallY;
+            scene.add(ball);
+
+            /* Create a renderer, alpha must be true to handle cloud transparency;
+            anti-aliasing turned on to make things smoother */
+    				renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    				renderer.setSize(window.innerWidth, window.innerHeight);
+    				container.appendChild(renderer.domElement);
+
+            // Add event listeners to the document to handle interactions
+    				document.addEventListener('mousemove', onDocumentMouseMove, false);
+    				window.addEventListener('resize', onWindowResize, false);
+    			}
+
+          /* On mouse movement, mouseX and mouseY can be positive or negative to
+          later let the user move left or right depending on which side of the
+          the screen the mouse is on. Also, the center of the light coordinates
+          becomes exactly the spot where the mouse is located */
+    			function onDocumentMouseMove(event) {
+    				mouseX = (event.clientX - screenWidth/2) * 0.8;
+    				mouseY = (event.clientY - screenHeight/2) * 0.8;
+            bgUniforms.light.value.x = event.clientX;
+            bgUniforms.light.value.y = screenHeight - event.clientY;
+            cloudUniforms.light.value.x = event.clientX;
+            cloudUniforms.light.value.y = screenHeight - event.clientY;
+    			}
+
+          /* Allows the scene to be proportionally resized depending on window
+          resizing, mostly unmodified from Mr. Doob's script */
+    			function onWindowResize(event) {
+    				camera.aspect = window.innerWidth / window.innerHeight;
+    				camera.updateProjectionMatrix();
+    				renderer.setSize(window.innerWidth, window.innerHeight);
+            screenWidth = window.innerWidth;
+            screenHeight = window.innerHeight;
+    			}
+
+          /* Redraw scene with current parameters specified in the GUI for the fog
+          color, cloud depth test, and which background is displayed*/
+          function redoScene(){
+            fog.color.set(guiParams.fogColor);
+            cloudMat.depthTest = guiParams.depthTest;
+            bgUniforms.whichBG.value = guiParams.backGround;
+            renderer.render(scene, camera);
+          }
+
+
+          TW.mainInit(renderer,scene);
+
+          // Define keyboard callbacks
+          TW.setKeyboardCallback("g", stopBall, "start/stop ball");
+          TW.setKeyboardCallback("0", restartBall, "move ball back to start postion");
+          TW.setKeyboardCallback("c", resetClouds, "reset clouds position");
+
+          /* Checks if the ball is currently moving and switch the boolean to the
+          opposite state (only works for keyboard interaction start/stop, not dat.GUI)*/
+          function stopBall(){
+            if (ballMoving == true){
+              ballMoving = false;
+            }else if (ballMoving == false) {
+              ballMoving = true;
+            }
+          }
+
+          // Places ball back at its starting point
+          function restartBall(){
+            ball.position.z = params.initBallZ;
+            ball.position.y = params.initBallY;
+            ball.position.x = 0;
+          }
+
+          // Resets the clouds x and y positions back to their starting points
+          function resetClouds(){
+            cloudMesh.position.x = 0;
+            cloudMesh.position.y = 0;
+          }
+
+          /* Checks the input from the parameters selected on the GUI and modifies
+          the scene appropriately */
+          function guiCheck(){
+            if (ballMoving==true){
+              ball.position.x += (mouseX - ball.position.x) * 0.05;
+              ball.position.y += (- mouseY - ball.position.y) * 0.05;
+              ball.position.z += guiParams.ballSpeed;
+            }
+            bgUniforms.time.value += .0005;
+
+            /* Makes the background light pulse in size; the cosine of 5 * the
+            time value uniform is so that it will pulse faster, and dividing the
+            entire value by 8.0 makes the maximum size of the background light
+            smaller*/
+            if (guiParams.backLightOn){
+              bgUniforms.light.value.z = Math.abs(Math.cos(5*bgUniforms.time.value))/8.0;
+            }else{
+              bgUniforms.light.value.z = 0;
+            }
+
+            if (guiParams.cloudLightOn){
+              cloudUniforms.light.value.z = 0.05;
+            }else{
+              cloudUniforms.light.value.z = 0;
+            }
+
+            ball.rotation.z += 0.005;
+
+            if (guiParams.moveCloudX == true){
+              cloudMesh.position.x += 0.012;
+            }
+
+            if (guiParams.moveCloudY == true){
+              cloudMesh.position.y += 0.012;
+            }
+          }
+
+          // Animates the scene
+    			function animate() {
+    				requestAnimationFrame(animate);
+            guiCheck();
+    				renderer.render(scene, camera);
+    			}
+
+		</script>
+	</body>
+</html>
