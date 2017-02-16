@@ -198,9 +198,6 @@ body {
         margin-left: -30px
     }
 
-    li{
-      visibility: hidden;
-    }
     .preloader:before {
         left: -2px;
         top: -2px;
@@ -958,6 +955,11 @@ fieldset {
         font-size: 50px;
         line-height: 50px;
     }
+
+    #forback{
+      visibility: hidden;
+    }
+    
     #home,
     .disply-table {
         height: 500px;
