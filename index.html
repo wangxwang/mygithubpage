@@ -43,15 +43,8 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <!-- <li><a href="#work">Work</a></li> -->
                 <li><a href="#projects">Work</a></li>
-                <!-- <li><a href="#contact">contact</a></li> -->
-                <!-- <div class ="dropdown">
-                <a href="#pj" data-toggle="dropdown" class="dropdown-toggle"><li>Dropdown</li></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#pj"><img src="img/portfolio/chopPrevOpt.jpg" width="230"></a></li>
-                    <li><a href="#pj">Another action</a></li>
+                <li><a href="#about">About</a></li>
                 </ul>
               </div> -->
             </ul>
@@ -79,7 +72,7 @@
     <div class="section" id="projects">
         <div class="container">
             <div class="col-md-12" data-aos="fade-up">
-                <h4>03</h4>
+                <h4>&#9830;</h4>
                 <h1 class="size-50">Work/<br /> Projects</h1>
             </div>
             <!-- main container -->
@@ -192,7 +185,7 @@
     <div class="section" id="about">
         <div class="container">
             <div class="col-md-6" data-aos="fade-up">
-                <h4>01</h4>
+                <h4>&#9830;</h4>
                 <h1 class="size-50">About <br /> This Person</h1>
                 <div class="h-50"></div>
                 <p>Currently completing a B.A. Computer Science with a Studio Art minor</p>
@@ -214,52 +207,6 @@
         </div>
     </div>
 
-    <!-- contact -->
-    <!-- <div class="section" id="contact">
-        <div class="container">
-            <div class="col-md-12" data-aos="fade-up">
-                <h4>04</h4>
-                <h1 class="size-50">Contact  Me</h1>
-                <div class="h-50"></div>
-            </div>
-            <div class="col-md-4" data-aos="fade-up"> -->
-
-                <!-- <h3>Phone Number</h3>
-                <p>+20 5555 569 42</p>
-                <h3> Mobile Numberr</h3>
-                <p>+20 5555 569 42</p> -->
-                <!-- <h3>Email</h3>
-                <p>mail@info.me </p> -->
-
-                <!-- <h3>Social Network</h3>
-
-                <ul class="social">
-                    <li><a href="#"><i class="ion-social-facebook"></i></a></li>
-                    <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-                    <li><a href="#"><i class="ion-social-instagram"></i></a></li>
-                    <li><a href="#"><i class="ion-social-dribbble"></i></a></li>
-                </ul> -->
-                <!-- <div class="clearfix"></div>
-                <div class="h-50"></div>
-            </div>
-            <div class="col-md-8" data-aos="fade-up">
-                <form class="contact-bg" id="contact-form" name="contact" method="post" novalidate="novalidate">
-                    <input type="text" name="name" class="form-control" placeholder="Your Name" />
-                    <input type="email" name="email" class="form-control" placeholder="Your E-mail" />
-                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" />
-                    <textarea name="message" class="form-control" placeholder="Your Message" style="height:120px"></textarea>
-                    <button id="submit" type="submit" name="submit" class="btn btn-glance">Send</button>
-                    <div id="success">
-                        <p class="green textcenter"> Your message was sent successfully! I will be in touch as soon as I can. </p>
-                    </div>
-                    <div id="error">
-                        <p> Something went wrong, try refreshing and submitting the form again. </p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> -->
-    <!-- ./contact -->
 
     <!--DEMO01-->
     <!-- <div id="animatedModal" class="popup-modal"> -->
@@ -301,92 +248,6 @@
     <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/stats.js/r11/Stats.js'></script>
 
-    <!-- <script>
-      var camera, scene, renderer,
-          geometry, material, mesh;
-
-      init();
-      animate();
-
-      function init() {
-         clock = new THREE.Clock();
-
-          renderer = new THREE.WebGLRenderer();
-          renderer.setSize( window.innerWidth, window.innerHeight );
-          var screenWidth = window.innerWidth;
-          var screenHeight = window.innerHeight;
-          var aspectRatio = screenWidth / screenHeight;
-
-          scene = new THREE.Scene();
-
-          camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-          camera.position.z = 1000;
-          scene.add( camera );
-
-          geometry = new THREE.CubeGeometry( 200, 200, 200 );
-          material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false } );
-          mesh = new THREE.Mesh( geometry, material );
-          cubeSineDriver = 0;
-
-          THREE.ImageUtils.crossOrigin = ''; //Need this to pull in crossdomain images from AWS
-
-          light = new THREE.DirectionalLight(0xffffff,0.5);
-          light.position.set(-1,0,1);
-          scene.add(light);
-
-          smokeTexture = THREE.ImageUtils.loadTexture('https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png');
-          smokeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: smokeTexture, transparent: true});
-          smokeGeo = new THREE.PlaneGeometry(300,300);
-          smokeParticles = [];
-
-          for (p = 0; p < 150; p++) {
-              var particle = new THREE.Mesh(smokeGeo,smokeMaterial);
-              particle.position.set(Math.random()*500-250,Math.random()*500-250,Math.random()*1000-100);
-              particle.rotation.z = Math.random() * 360;
-              scene.add(particle);
-              smokeParticles.push(particle);
-          }
-          document.body.appendChild( renderer.domElement );
-      }
-
-      function animate() {
-          delta = clock.getDelta();
-          requestAnimationFrame( animate );
-          evolveSmoke();
-          render();
-      }
-
-      function evolveSmoke() {
-          var sp = smokeParticles.length;
-          while(sp--) {
-              smokeParticles[sp].rotation.z += (delta * 0.12);
-          }
-      }
-
-      function onWindowResize() {
-        camera.aspect = aspectRatio;
-        camera.updateProjectionMatrix();
-        renderer.setSize( screenWidth, screenHeight );
-
-      }
-
-      function render() {
-          mesh.rotation.x += 0.005;
-          mesh.rotation.y += 0.01;
-          cubeSineDriver += .01;
-          mesh.position.z = 100 + (Math.sin(cubeSineDriver) * 500);
-          renderer.render( scene, camera );
-      }
-      </script>
-    <script>
-    $('#test').bind('click', function(e) {
-        e.preventDefault();
-
-        $('div.meh').toggleClass('animated');
-
-    });
-    $('#animatedModal').removeClass('modal-open');
-    </script> -->
 </body>
 
 </html>

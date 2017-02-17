@@ -375,7 +375,8 @@ nav .dropdown {
 #home {
     /*background: url(../img/home-bg-2.jpg);
     background-size: cover;*/
-    height: 100vh;
+    height: 20vh;
+    margin-left: 10vw;
 }
 
 .table-cell {
@@ -385,7 +386,7 @@ nav .dropdown {
 
 .disply-table {
     display: table;
-    height: 100vh;
+    height: 40vh;
 }
 
 
@@ -961,6 +962,10 @@ fieldset {
         line-height: 50px;
     }
 
+    #imgshrink{
+      width: 100%;
+    }
+
     #forback{
       visibility: hidden;
     }
@@ -969,10 +974,34 @@ fieldset {
       visibility: visible;
     }
 
-    #home,
-    .disply-table {
-        height: 500px;
+    #about {
+      /*background: url(../img/home-bg-2.jpg);
+      background-size: cover;*/
+        padding: 100px 0;
     }
+    /*#home {
+        height: 20vh;
+        margin-left: 10vw;
+    }
+
+    .table-cell {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .disply-table {
+        display: table;
+        height: 40vh;
+    }*/
+    #home{
+        height: 40vh;
+        margin-left: 5vw;*/
+    }
+
+    .disply-table {
+        height: 60vh;
+    }
+
     .about-border {
         width: 265px;
     }
