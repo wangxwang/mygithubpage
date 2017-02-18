@@ -1,113 +1,295 @@
-<!-- ./about -->
-<!-- Alt 1 Chopsticks -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<!-- ./about -->
-<!-- Project 1 Chopsticks -->
-<div class="section" id="work">
-      <div class="container">
-        <div class="col-md-12" data-aos="fade-up">
-            <h4>02</h4>
-            <h1 class="size-50">Work</h1>
-            <div class="h-50"></div>
-        </div>
+    <title>Cloud Playground</title>
 
-        <div class="col-md-12 about-img-div" data-aos="fade-up">
-            <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
-            <a href="chopsticks.html" class="portfolio_item"> <img src="img/portfolio/full.jpg" alt="image" class="img-responsive" />
-                <div class="portfolio_item_hover">
-                    <div class="portfolio-border clearfix">
-                        <div class="item_info"> <span>Chopsticks</span> <em>+</em> </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+    <!-- Latest compiled and minified CSS -->
 
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="/css/aos.css" rel="stylesheet">
+<link href="/css/ionicons.min.css" rel="stylesheet">
+<link href="/css/style5.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+<link rel="stylesheet" href="css/style3.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+      <style>
+        .top-buffer {
+          margin-top:30px;
+        }
+      </style>
+      <header class="navbar-fixed-top">
+          <nav>
+              <ul>
+                  <li><a href="/index.html">Home</a></li>
+                  <li><a href="/index.html#projects">Work</a></li>
+                  <li><a href="/index.html#about">About</a></li>
+
+                  <li id="small">&nbsp; &nbsp;</li>
+                  <li id="small"><a href="emotiSphere.html"> &#9664;Prev</a></li>
+                  <li id="small"><a href="shroomBear.html"> Next &#9658;</a></li>
+
+              </ul>
+              <ul class="pull-right" id="forback">
+                  <li><a href="emotiSphere.html"> <- Previous</a></li>
+                  <li><a href="shroomBear.html">Next -></a></li>
+              </ul>
+          </nav>
+      </header>
+
+  </head>
+
+  <body>
+    <div class="row top-buffer"> </div>
+    <div class="row top-buffer"> </div>
+    <div class="row top-buffer"> </div>
+    <div class="section">
+      <h1 class ="text-center">Cloud Playground</h1>
+      <h4 class ="text-center">Computer Graphics Final Project</h1>
+      <!-- <h4 class ="text-center">Shelley X Wang</h1> -->
+      <h1 class ="text-center"><a href="graph/demo.html" target="_blank">Demo Here</a></h1>
     </div>
-</div>
 
-<!-- Project 2 3D -->
-<div class="section" id="work">
+    <div class="section">
       <div class="container">
-
-        <div class="col-md-12 about-img-div" data-aos="fade-up">
-            <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
-            <a href="emotiSphere.html" class="portfolio_item"> <img src="img/portfolio/wowpink.jpg" alt="image" class="img-responsive" />
-                <div class="portfolio_item_hover">
-                    <div class="portfolio-border clearfix">
-                        <div class="item_info"> <span>EmotiSphere</span> <em>+</em> </div>
-                    </div>
-                </div>
-            </a>
+        <div class="col-md-12 col-xs-12">
+              <a href="demo.html" target="_blank"><img class="center-block img-responsive" src="graph/imgs/click.jpg "/></a>
         </div>
+      </div>
     </div>
-</div>
+
+    <div class="row top-buffer"> </div>
+
+    <div class="section">
+        <div class="container">
+          <h1 class="size-50">Intro</h1>
+          <div class="col-md-12">
+              <p>This was a project to familiarize myself with some of the vast possible applications
+              of manipulating shaders in Three.js. There are two meshes in the scene that have custom
+              shaders attached: the clouds and the background. There are various ways to interact with
+              the scene via dat.GUI, keyboard, and mouse interactions, so that the user can also
+              experiment with the scene.</p>
+
+              <p>This project also demonstrates the importance of using the depth buffer algorithm and
+                employing the painter's algorithm, drawing clouds from furthest to nearest. This personally
+                gave me a lot of grief and headaches while writing the scene, so I found it pertinent to include
+                a feature that addresses this. You can see the importance by turning on/off the depthTest in the
+                GUI while allowing a ball in the scene to fly through the clouds.
+
+              <p>Note: The alpha version was modelled on code modified from
+                <a href="http://www.cs.ucr.edu/~fkhor001/ThreeJs/Personal_webpage/" target="_blank">Farzad Khorasani</a>.
+              For this iteration, the code from Khorasani was completely scrapped. The current
+              iteration is much more a build from the ground up referencing pieces from the
+              <a href="http://mrdoob.com/lab/javascript/webgl/clouds" target="_blank">cloud scene by mrdoob.</a></p>
+          </div>
 
 
-<div class="section" id="work">
-      <div class="container">
-
-        <div class="col-md-12 about-img-div" data-aos="fade-up">
-            <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
-            <a href="graph/project.html" class="portfolio_item"> <img src="img/portfolio/title.png" alt="image" class="img-responsive" />
-                <div class="portfolio_item_hover">
-                    <div class="portfolio-border clearfix">
-                        <div class="item_info"> <span>Cloud Playground</span> <em>+</em> </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- Project 2 3D -->
-<div class="section" id="work">
-      <div class="container">
-
-        <div class="col-md-12 about-img-div" data-aos="fade-up">
-            <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
-            <a href="shroomBear.html" class="portfolio_item"> <img src="img/portfolio/da_dscene.jpg" alt="image" class="img-responsive" />
-                <div class="portfolio_item_hover">
-                    <div class="portfolio-border clearfix">
-                        <div class="item_info"> <span>Shroombear</span> <em>+</em> </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Project 5 G Design -->
-<div class="section" id="work">
-      <div class="container">
-
-        <div class="col-md-offset-2 col-md-8 about-img-div" data-aos="fade-up">
-            <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
-            <a href="design.html" class="portfolio_item"> <img src="img/portfolio/hp_full.jpg" alt="image" class="img-responsive" />
-                <div class="portfolio_item_hover">
-                    <div class="portfolio-border clearfix">
-                        <div class="item_info"> <span>Design</span> <em>+</em> </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- Project 2 3D -->
-<div class="section" id="work">
-      <div class="container">
-
-        <div class="col-md-12 about-img-div" data-aos="fade-up">
-            <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
-            <a href="drawings.html" class="portfolio_item"> <img src="img/portfolio/draw1.jpg" alt="image" class="img-responsive" />
-                <div class="portfolio_item_hover">
-                    <div class="portfolio-border clearfix">
-                        <div class="item_info"> <span>Drawings</span> <em>+</em> </div>
-                    </div>
-                </div>
-            </a>
         </div>
     </div>
-</div>
+
+    <div class="row top-buffer"> </div>
+
+    <div class="section">
+        <div class="container">
+          <h1 class="size-50">Controls & Functionalities</h1>
+          <div class ="row">
+            <div class="col-md-4">
+              <br>
+                <img class="center-block" src="graph/imgs/datgui.png"/>
+            </div>
+            <div class="col-md-8">
+                <h4><u>dat.GUI</u></h4>
+                <p><b>fogColor:</b> Changes the color of the more distant clouds (which are colored for a realistic depth effect)</p>
+                <p><b>backGround:</b> User can choose between two different shader effects on the background plane</p>
+                <p><b>ballSpeed:</b> A green ball will fly at the user from a distance upon initialization; the user can choose how fast
+                it flies towards them</p>
+                <p><b>moveCloudX/Y:</b> Changes the color of the more distant clouds (which are colored for a realistic depth effect)</p>
+                <p><b>depthTest:</b> Changes the color of the more distant clouds (which are colored for a realistic depth effect)</p>
+                <p><b>backLightOn:</b> Turns on/off a pulsing "light" for the background that follows the mouse and affects the background shader</p>
+                <p><b>cloudbackLightOn:</b> Turns on/off a "light" for the cloud that is like the one for the background light except for the pulsing
+                aspect</p>
+                <br>
+
+                <h4><u>Keyboard Controls</u></h4>
+                <h5>(also shown at top of demo for reference)</h5>
+                <p><b>g: </b>Start/stop the ball (note: the ballSpeed in the GUI must be greater than 0 to start)</p>
+                <p><b>0: (zero) </b>Reposition the ball at its initial starting point at from the back of the clouds, especially do this
+                after the ball has flown past the user/camera</p>
+                <p><b>c: </b>Moves all of the clouds back to their initial starting point</p>
+                <br>
+
+                <h4><u>Mouse Controls</u></h4>
+                <p>If the ball isn't stopped via the GUI or keyboard command, or already passed the camera, the ball will follow the location
+                of the mouse moving in the x and y planes towards the pointer location. If the background light and cloud light are on,
+                they will follow the location of the pointer directly.</p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+    </div>
+
+    <div class="row top-buffer"> </div>
+
+    <div class="section">
+        <div class="container">
+          <h1 class="size-50">Things to try & More insight</h1>
+
+            <div class ="row">
+              <div class="col-md-8">
+                <br>ß
+                  <img class="center-block img-responsive" src="graph/imgs/2ndbg.png"/>
+              </div>
+              <div class="col-md-4">
+                <br>
+                <p>Change the background from 0 to 1 for a radiating "rainbow" effect. Also try
+                changing the fog color (here it was changed to blue)</p>
+              </div>
+            </div>
+
+            <div class="row top-buffer"> </div>
+            <div class ="row">
+              <div class="col-md-8">
+                <br>
+                  <img class="center-block img-responsive" src="graph/imgs/hiddenInClouds.png"/>
+              </div>
+              <div class="col-md-4">
+                <br>
+                <p>Turn on moveCloudY and let the ball travel through while the depthTest is on (bonus for using
+                  the mouse to guide the ball through the clouds)</p>
+              </div>
+            </div>
+
+            <div class="row top-buffer"> </div>
+            <div class ="row">
+              <div class="col-md-8">
+                <br>
+                  <img class="center-block img-responsive" src="graph/imgs/upCloud.png"/>
+              </div>
+              <div class="col-md-4">
+                <br>
+                <p>Wait for all of the clouds closest to the camera to pass up and away. You will then
+                notice more "colored" clouds. Because they are further away from the camera, they become
+                more mixed with the fog color via the cloud fragment shader.</p>
+              </div>
+            </div>
+
+            <div class="row top-buffer"> </div>
+            <div class ="row">
+              <div class="col-md-8">
+                <br>
+                  <img class="center-block img-responsive" src="graph/imgs/noDepth.png"/>
+              </div>
+              <div class="col-md-4">
+                <br>
+                <p>Try turning the depthTest off; the ball will look huge when close by but still
+                remain behind all of the clouds!</p>
+              </div>
+            </div>
+
+            <div class="row top-buffer"> </div>
+            <div class ="row">
+              <div class="col-md-5">
+                <br>
+                  <img class="center-block img-responsive" src="graph/imgs/cloudLight.png"/>
+              </div>
+              <div class="col-md-7">
+                <br>
+                <p>Turn the cloud light on and pass it over the clouds. Bonus points for doing it when
+                having the clouds move upwards in the Y direction (try passing it over the most transparent
+                cloud areas)</p>
+              </div>
+            </div>
+
+            <div class="row top-buffer"> </div>
+            <div class ="row">
+              <div class="col-md-5">
+                <br>
+                  <img class="center-block img-responsive" src="graph/imgs/bgLight.png"/>
+              </div>
+              <div class="col-md-7">
+                <br>
+                <p>Coming up with a formula to make the light diffuse and blend into the background
+                 took awhile, and written in the fragment shader. The pulsing, on the other hand, was
+                written in javascript to manipulate the uniforms. I thought this was a good lesson in
+               getting the GLSL code and javascript to communicate with each other.</p>
+              </div>
+            </div>
+
+            <div class="row top-buffer"> </div>
+            <div class ="row">
+              <div class="col-md-12">
+                <br>
+                <h3>Have fun</h3>
+                <p>There are a lot of combinations to be tried; i.e. turning of the cloud x-movement and just letting
+                  the clouds rise, keeping both lights on/off, etc.
+              </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row top-buffer"> </div>
+
+    <div class="section">
+        <div class="container">
+          <h1 class="size-50">Known "Bugs", Future Iterations, and Takeaways</h1>
+          <div class="col-md-12">
+              <p>I feel ambiguous about whether the word "bugs" should be applied to the following, as the program works currently works as intended
+                but definitely could be improved on the functionality side in future iterations. Therefore, this is a list of "bugs"/future things to implement.
+              <ul>
+                <li>The background texture eventually blends into a seamless purple if left open for too long; the fragment shader code could be improved
+                to loop or replace the texture when that happens</li>
+                <li>When the clouds/ball/etc. migrate off the screen, I could perhaps write something to automatically place them back at their initial
+                positions. Or, I could make infinite clouds appear afterwards</li>
+                <li>Allowing the user to apply different shader materials to the ball itself</li>
+                <li>The mouse interaction overlaps with trying to manipulate features on the GUI; I could try to have the event listener ignore any movement
+                inside the GUI box</li>
+                <li>Controlling cloud speed</li>
+                <li>& etc.</li>
+              </ul>
+              <p> As I worked on this project, it quickly became apparent that there seemed to be an infinite amount of concepts to master
+               in order to get a good handle on writing shaders. This meant that even though I spent a very large time trying to learn about shaders
+               from the ground up, I'm sure I've only touched the tip of the iceberg. There were dozens that I came across that looked extremely
+               promising, but realistic time constraints would bar me from implementing for this iteration.
+
+               <p>  Most notably, in terms of shaders, the next concept I would like to implement is linking the scene lights to the custom shaders
+                 (so we could perhaps get a shadow on the clouds from the ball bouncing). Currently, the scene lights are only manipulating the shading
+                 on the ball (as it is of a phong material).
+
+               <p> In this iteration, I also only focused on manipulating the fragment shaders; in the future I would like to try manipulating the vertex
+                 shaders and creating displacements across the surfaces of the geometries (also perhaps combining it with a fragment shader manipulation
+                 to make objects "glow").
+
+               <p>I'd also like to try making use of various shader libraries currently written by members of the three.js community. There are other shader
+                 concepts I'd like to try, but this list would never end. Overall however, I've learned an indordinate amount of things through this project.
+          </div>
+
+
+        </div>
+    </div>
+
+    <div class="row top-buffer"> </div>
+    <div class="section">
+        <div class="container">
+          <div class="col-md-12">
+              <p>Special thanks to Scott Anderson, Jos Dirksen's book, and everyone who wrote a shader tutorial/the StackOverFlow threads
+          </div>
+        </div>
+    </div>
+
+    <div class="row top-buffer"> </div>
+
+  </body>
+</html>

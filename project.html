@@ -18,7 +18,7 @@
 <link href="/css/ionicons.min.css" rel="stylesheet">
 <link href="/css/style5.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-<link rel="stylesheet" href="css/style3.css">
+<link rel="stylesheet" href="css/style6.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -27,47 +27,51 @@
           margin-top:30px;
         }
       </style>
-      <header class="navbar-fixed-top">
-          <nav>
-              <ul>
-                  <li><a href="/index.html">Home</a></li>
-                  <li><a href="/index.html#projects">Work</a></li>
-                  <li><a href="/index.html#about">About</a></li>
-
-                  <li id="small">&nbsp; &nbsp;</li>
-                  <li id="small"><a href="emotiSphere.html"> &#9664;Prev</a></li>
-                  <li id="small"><a href="shroomBear.html"> Next &#9658;</a></li>
-
-              </ul>
-              <ul class="pull-right" id="forback">
-                  <li><a href="emotiSphere.html"> <- Previous</a></li>
-                  <li><a href="shroomBear.html">Next -></a></li>
-              </ul>
-          </nav>
-      </header>
-
   </head>
 
   <body>
-    <div class="row top-buffer"> </div>
-    <div class="row top-buffer"> </div>
-    <div class="row top-buffer"> </div>
-    <div class="section">
-      <h1 class ="text-center">Cloud Playground</h1>
-      <h4 class ="text-center">Computer Graphics Final Project</h1>
-      <!-- <h4 class ="text-center">Shelley X Wang</h1> -->
-      <h1 class ="text-center"><a href="graph/demo.html" target="_blank">Demo Here</a></h1>
-    </div>
 
-    <div class="section">
-      <div class="container">
-        <div class="col-md-12 col-xs-12">
-              <a href="demo.html" target="_blank"><img class="center-block img-responsive" src="graph/imgs/click.jpg "/></a>
+    <header class="navbar-fixed-top">
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/index.html#projects">Work</a></li>
+                <li><a href="/index.html#about">About</a></li>
+
+                <li id="small">&nbsp; &nbsp;</li>
+                <li id="small"><a href="emotiSphere.html"> &#9664;Prev</a></li>
+                <li id="small"><a href="shroomBear.html"> Next &#9658;</a></li>
+
+            </ul>
+            <ul class="pull-right" id="forback">
+                <li><a href="emotiSphere.html"> <- Previous</a></li>
+                <li><a href="shroomBear.html">Next -></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="section" id="home" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="disply-table">
+                <div class="table-cell" data-aos="fade-up" data-aos-delay="0">
+                    <h1>Cloud Playground</h1>
+                    <h4>Computer Graphics Final Project</h4>
+                  </div>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="row top-buffer"> </div>
+
+    <div class="section" id="about">
+        <div class="container">
+          <h1 class ="text-center"><a href="graph/demo.html" target="_blank">Demo Here</a></h1>
+            <div class="col-md-12 col-xs-12 about-img-div" data-aos="fade-up">
+                <!-- <div class="about-border" data-aos="fade-up" data-aos-delay=".5"></div> -->
+                <a href="demo.html" target="_blank"><img class="center-block img-responsive" src="graph/imgs/click.jpg "/></a>
+
+            </div>
+        </div>
+    </div>
 
     <div class="section">
         <div class="container">
@@ -290,6 +294,25 @@
     </div>
 
     <div class="row top-buffer"> </div>
+
+    <script src="js/jquery.js"></script>
+
+    <!--  plugins  -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+
+    <!--  main script  -->
+    <script src="js/custom.js"></script>
+    <script>
+    $('#test').bind('click', function(e) {
+        e.preventDefault();
+
+        $('div.meh').toggleClass('animated');
+    });
+    </script>
 
   </body>
 </html>
